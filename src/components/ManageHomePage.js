@@ -12,11 +12,12 @@ function HomePage() {
   const getDataSetInfo = async () => {
     const ans = { dealers: [] };
     const dataset = await coxApi.getDataSet();
+    console.log(dataset);
     setDataSet(dataset);
 
     const vehiclesids = await coxApi.getVehiclesIds(dataset.datasetId);
     setVehicleIds(vehiclesids.vehicleIds);
-    console.log(vehiclesids);
+    console.log("vehicleids", vehiclesids);
 
     // const vehicleinfo = await coxApi.getVehicleInfo(
     //   dataset.datasetId,
@@ -42,6 +43,7 @@ function HomePage() {
       dataset.datasetId,
       dealerIds
     );
+    setAllDealerInfo(alldealerinfo);
     console.log("all dealers", alldealerinfo);
 
     for (let i = 0; i < alldealerinfo.length; i++) {
@@ -103,6 +105,19 @@ function HomePage() {
               <p>Loading...</p>
             )}
           </div>
+        </div>
+        <div className="col-3">
+          {allDealerInfo.length > 0 ? (
+            allDealerInfo.map((dealer) => (
+              <div key={dealer.dealerId}>
+                <p>{dealer.dealerId}</p>
+                <p>{dealer.name}</p>
+                <hr />
+              </div>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
       </div>
     </div>

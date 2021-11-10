@@ -43,11 +43,17 @@ export const getVehicleInfo = async (datasetId, vehicleid) => {
 
 // async fucntion to concurrently fetch vehicle info from a list of vehicle ids
 export const getAllVehicleInfo = async (datasetId, vehicleids) => {
-  const response = await Promise.all(
-    vehicleids.map((id) => fetch(`${baseUrl}/api/${datasetId}/vehicles/${id}`))
-  );
-  const data = await Promise.all(response.map((res) => res.json()));
-  return data;
+  try {
+    const response = await Promise.all(
+      vehicleids.map((id) =>
+        fetch(`${baseUrl}/api/${datasetId}/vehicles/${id}`)
+      )
+    );
+    const data = await Promise.all(response.map((res) => res.json()));
+    return data;
+  } catch (err) {
+    return null;
+  }
 };
 
 export const addVehicles = (dealerId, vehicleInfo) => {
