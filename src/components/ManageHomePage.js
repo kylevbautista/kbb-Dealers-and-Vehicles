@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 import * as coxApi from "../api/coxApi";
 
 // Components
-import ShowDealerInfo from "./ShowDealerInfo";
-import ShowVehicleInfo from "./ShowVehicleInfo";
-import ShowVehicleIds from "./ShowVehicleIds";
-import ShowSubmitResponse from "./ShowSubmitResponse";
-import ShowDataSetId from "./ShowDataSetId";
+import ShowDealerInfo from "./homePage/ShowDealerInfo";
+import ShowVehicleInfo from "./homePage/ShowVehicleInfo";
+import ShowVehicleIds from "./homePage/ShowVehicleIds";
+import ShowSubmitResponse from "./homePage/ShowSubmitResponse";
+import ShowDataSetId from "./homePage/ShowDataSetId";
 
 function ManageHomePage() {
   const [dataSet, setDataSet] = useState({});
