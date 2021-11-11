@@ -7,14 +7,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import * as coxApi from "../api/coxApi";
 
-//components
+// Components
 import ShowDealerInfo from "./ShowDealerInfo";
 import ShowVehicleInfo from "./ShowVehicleInfo";
 import ShowVehicleIds from "./ShowVehicleIds";
 import ShowSubmitResponse from "./ShowSubmitResponse";
 import ShowDataSetId from "./ShowDataSetId";
 
-function HomePage() {
+function ManageHomePage() {
   const [dataSet, setDataSet] = useState({});
   const [vehicleIds, setVehicleIds] = useState([]);
   const [allVehicleInfo, setAllVehicleInfo] = useState([]);
@@ -127,4 +127,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default ManageHomePage;
