@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ManageHomePage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ManageHomePage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * HomePage Container component. Contains logic needed to display
+ * Dealers and Vehicles data.
+ * @module
+ */
+import React from "react";
+import { useEffect, useState } from "react";
+import * as coxApi from "../api/coxApi";
+
+function HomePage() {
+  const [dataSet, setDataSet] = useState({});
+  const [vehicleIds, setVehicleIds] = useState([]);
+  const [allVehicleInfo, setAllVehicleInfo] = useState([]);
+  const [allDealerInfo, setAllDealerInfo] = useState({});
+
+  const getDealersandVehicles = async () => {
+    const ans = { dealers: [] };
+    const dataset = await coxApi.getDataSet();
+    console.log(dataset);
+    setDataSet(dataset);
+
+    const vehiclesids = await coxApi.getVehiclesIds(dataset.datasetId);
+    setVehicleIds(vehiclesids.vehicleIds);
+    console.log("vehicleids", vehiclesids);
+
+    const allvehicleinfo = await coxApi.getAllVehicleInfo(
+      dataset.datasetId,
+      vehiclesids.vehicleIds
+    );
+    setAllVehicleInfo(allvehicleinfo);
+    console.log("all vehicle", allvehicleinfo);
+
+    // for loop to add unique dealerids to array to use for getAllDealerInfo
+    const dealerIds = [];
+    for (let i = 0; i &lt; allvehicleinfo.length; i++) {
+      if (dealerIds.indexOf(allvehicleinfo[i].dealerId) === -1) {
+        dealerIds.push(allvehicleinfo[i].dealerId);
+      }
+    }
+    const alldealerinfo = await coxApi.getAllDealerInfo(
+      dataset.datasetId,
+      dealerIds
+    );
+    setAllDealerInfo(alldealerinfo);
+    console.log("all dealers", alldealerinfo);
+
+    for (let i = 0; i &lt; alldealerinfo.length; i++) {
+      if (ans.dealers.indexOf(alldealerinfo[i].dealerId) === -1) {
+        const vehicleArray = coxApi.addVehicles(
+          alldealerinfo[i].dealerId,
+          allvehicleinfo
+        );
+        ans.dealers.push({ ...alldealerinfo[i], vehicles: vehicleArray });
+      }
+    }
+    console.log(ans);
+    const submitDataSetResponse = await coxApi.submitDataSet(
+      dataset.datasetId,
+      ans
+    );
+    console.log(submitDataSetResponse);
+  };
+
+  useEffect(() => {
+    getDealersandVehicles();
+  }, []);
+
+  return (
+    &lt;div className="container">
+      &lt;div className="row justify-content-center">
+        {Object.keys(dataSet).length > 0 ? (
+          &lt;div className="col-3">datasetId: {dataSet.datasetId}&lt;/div>
+        ) : (
+          &lt;div className="col-3">Loading...&lt;/div>
+        )}
+        &lt;div className="col-3">
+          {vehicleIds.length > 0 ? (
+            vehicleIds.map((id) => &lt;p key={id}>vehicleId:{id}&lt;/p>)
+          ) : (
+            &lt;p>Loading...&lt;/p>
+          )}
+        &lt;/div>
+        &lt;div className="col-3">
+          &lt;div
+            className="container border"
+            style={{
+              height: "500px",
+              width: "100%",
+              overflowY: "scroll",
+            }}
+          >
+            {allVehicleInfo.length > 0 ? (
+              allVehicleInfo.map((vehicle) => (
+                &lt;div key={vehicle.vehicleId}>
+                  &lt;p>{vehicle.vehicleId}&lt;/p>
+                  &lt;p>{vehicle.year}&lt;/p>
+                  &lt;p>{vehicle.make}&lt;/p>
+                  &lt;p>{vehicle.model}&lt;/p>
+                  &lt;hr />
+                &lt;/div>
+              ))
+            ) : (
+              &lt;p>Loading...&lt;/p>
+            )}
+          &lt;/div>
+        &lt;/div>
+        &lt;div className="col-3">
+          {allDealerInfo.length > 0 ? (
+            allDealerInfo.map((dealer) => (
+              &lt;div key={dealer.dealerId}>
+                &lt;p>{dealer.dealerId}&lt;/p>
+                &lt;p>{dealer.name}&lt;/p>
+                &lt;hr />
+              &lt;/div>
+            ))
+          ) : (
+            &lt;p>Loading...&lt;/p>
+          )}
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+export default HomePage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-api_coxApi.html">api/coxApi</a></li><li><a href="module-components_ManageHomePage.html">components/ManageHomePage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Nov 11 2021 08:00:28 GMT-0700 (Mountain Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
