@@ -3,7 +3,7 @@
  */
 import React from "react";
 
-export default function VehicleIds({ vehicleIds }) {
+function ShowVehicleIds({ vehicleIds }) {
   return (
     <>
       <h4>Vehicle Ids</h4>
@@ -18,9 +18,13 @@ export default function VehicleIds({ vehicleIds }) {
         {vehicleIds.length > 0 ? (
           vehicleIds.map((id) => <p key={id}>vehicleId:{id}</p>)
         ) : (
-          <p>Loading...</p>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         )}
       </div>
     </>
   );
 }
+
+export default ShowVehicleIds;

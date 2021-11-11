@@ -11,6 +11,9 @@ function ShowSubmitResponse({ response, onClick }) {
               <p className="fw-bold">
                 Completed in: {response.totalMilliseconds} milliseconds
               </p>
+              <p className="fw-bold">
+                {response.totalMilliseconds / 1000} seconds
+              </p>
             </div>
           ) : (
             <>
@@ -19,7 +22,9 @@ function ShowSubmitResponse({ response, onClick }) {
           )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
       )}
       <button onClick={onClick} type="button" className="btn btn-primary ">
         Press to Retry

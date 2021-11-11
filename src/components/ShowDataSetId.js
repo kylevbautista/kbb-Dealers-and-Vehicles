@@ -13,7 +13,9 @@ function ShowDataSetId({ dataSet }) {
         {Object.keys(dataSet).length > 0 ? (
           <p>{dataSet.datasetId}</p>
         ) : (
-          <p>Loading...</p>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         )}
       </div>
     </>
