@@ -11,7 +11,12 @@ function ShowSubmitResponse({ response, onClick }) {
         <div>
           {response.success ? (
             <div>
-              <p className=".text-primary">Message: {response.message}</p>
+              <p className=".text-primary" style={{ color: "green" }}>
+                Message: {response.message}
+              </p>
+              <p className=".text-primary" style={{ color: "blue" }}>
+                Success: True
+              </p>
               <p className="fw-bold">
                 Completed in: {response.totalMilliseconds} milliseconds
               </p>
@@ -22,6 +27,9 @@ function ShowSubmitResponse({ response, onClick }) {
           ) : (
             <>
               <p>Message: {response.message}</p>
+              <p className=".text-primary" style={{ color: "red" }}>
+                Success: False
+              </p>
             </>
           )}
         </div>
