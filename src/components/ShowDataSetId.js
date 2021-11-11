@@ -1,3 +1,7 @@
+/**
+ * Presentational compnent for displaying dataset object
+ * @module
+ */
 import React from "react";
 
 function ShowDataSetId({ dataSet }) {

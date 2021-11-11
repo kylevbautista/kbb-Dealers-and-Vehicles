@@ -1,5 +1,6 @@
 /**
  * Presentational Component in charge of presenting Dealer Info
+ * @module
  */
 import React from "react";
 

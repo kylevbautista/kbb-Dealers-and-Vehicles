@@ -1,5 +1,6 @@
 /**
  * Presentational Component in charge of presenting Vehicle Ids
+ * @module
  */
 import React from "react";
 

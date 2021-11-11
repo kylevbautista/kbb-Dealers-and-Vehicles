@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/ManageHomePage</title>
+    <title>JSDoc: Source: components/ShowVehicleInfo.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/ManageHomePage</h1>
+    <h1 class="page-title">Source: components/ShowVehicleInfo.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>HomePage Container component. Contains logic needed to display
-Dealers and Vehicles data.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_ManageHomePage.js.html">components/ManageHomePage.js</a>, <a href="components_ManageHomePage.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Presentational Component in charge of presenting Vehicle Info
+ * @module
+ */
+import React from "react";
+
+function ShowVehicleInfo({ allVehicleInfo }) {
+  return (
+    &lt;>
+      &lt;h4>Vehicle Info&lt;/h4>
+      &lt;div
+        className="container border rounded"
+        style={{
+          height: "275px",
+          width: "100%",
+          overflowY: "scroll",
+        }}
+      >
+        {allVehicleInfo.length > 0 ? (
+          allVehicleInfo.map((vehicle) => (
+            &lt;div key={vehicle.vehicleId}>
+              &lt;p>Id: {vehicle.vehicleId}&lt;/p>
+              &lt;p>Year: {vehicle.year}&lt;/p>
+              &lt;p>Make: {vehicle.make}&lt;/p>
+              &lt;p>Model: {vehicle.model}&lt;/p>
+              &lt;hr />
+            &lt;/div>
+          ))
+        ) : (
+          &lt;div className="spinner-border text-primary" role="status">
+            &lt;span className="visually-hidden">Loading...&lt;/span>
+          &lt;/div>
+        )}
+      &lt;/div>
+    &lt;/>
+  );
+}
+
+export default ShowVehicleInfo;
+</code></pre>
+        </article>
+    </section>
 
 
 

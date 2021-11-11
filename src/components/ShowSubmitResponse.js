@@ -1,3 +1,7 @@
+/**
+ * Presentational compnent for displaying submit response
+ * @module
+ */
 import React from "react";
 
 function ShowSubmitResponse({ response, onClick }) {
