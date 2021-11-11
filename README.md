@@ -1,7 +1,7 @@
 # Cox coding exercise
 
-React app that displays Dealer and Vehicle data being fetched and
-the amound of time it took to create and post the answer to endpoing.
+Simple React app that displays Dealer and Vehicle data being fetched, and
+displays the amount of time it took to create and post the answer to endpoint.
 
 # Documentaion generated using JSDoc
 
