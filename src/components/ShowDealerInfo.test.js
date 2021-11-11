@@ -10,12 +10,12 @@ function renderShowDealerInfo(args) {
   return render(<ShowDealerInfo {...props} />);
 }
 
-it('should render "DataSet Id" either when dataSet empty', () => {
+it('should render "Dealer Info" when dataSet empty', () => {
   const { getByText } = renderShowDealerInfo();
   getByText("Dealer Info");
 });
 
-it('should render "DataSet Id" either when dataSet is NOT empty', () => {
+it('should render "Dealer Info" when dataSet is NOT empty', () => {
   const { getByText } = renderShowDealerInfo([
     {
       dealerId: 0,

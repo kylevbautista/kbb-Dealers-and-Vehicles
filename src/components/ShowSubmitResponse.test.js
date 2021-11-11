@@ -17,12 +17,3 @@ it('should render "Loading..." when response is empty', () => {
   const { getByText } = renderShowSubmitResponse();
   getByText("Loading...");
 });
-
-// it('should render "Completed In:" and "Message:" when response is NOT empty', () => {
-//   const { getByText } = renderShowSubmitResponse({
-//     success: true,
-//     message: "string",
-//     totalMilliseconds: 0,
-//   });
-//   getByText("Completed in");
-// });
