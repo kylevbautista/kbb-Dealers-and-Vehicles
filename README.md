@@ -18,16 +18,19 @@ coxApi github friendly documentaion down below <br>
 
 ### `npm install`
 
-To install dependencies
+To install dependencies <br>
+Note: using node v16.13.0
 
 ### `npm start`
 
 To run react app locally. Will execute all api calls on start/load and display results.
-User Interface has a Try Again button to redo the process.
+User Interface has a Try Again button to redo the process. <br>
+Note: using node v16.13.0
 
 ### `npm test`
 
-To run unit tests
+To run unit tests <br>
+Note: using node v16.13.0
 
 # API Documentation
 
