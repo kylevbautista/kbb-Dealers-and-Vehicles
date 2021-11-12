@@ -5,9 +5,9 @@ displays the amount of time it took to create and post the answer to endpoint.
 
 ### Note:
 
-Using React, I noticed retrieving and posting is about 1 second slower. Elapsed Time around 9.5 seconds. <br>
-Pure JS and running on Node.js is about 1 second faster. Elapsed Time around 8.5 seconds <br>
-Both however,are significantly under 30 seconds.
+Using React, I noticed retrieving and posting is about 1 second slower than pure javascript. Elapsed Time around 9.5 seconds. <br>
+Pure javascript running in a Node.js environment is about 1 second faster than React. Elapsed Time around 8.5 seconds <br>
+Both however, are significantly under 30 seconds.
 
 # Documentaion generated using JSDoc
 
